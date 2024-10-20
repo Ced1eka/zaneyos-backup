@@ -1,0 +1,75 @@
+#!/bin/bash
+
+case_exa1(){
+
+hit_enter(){
+      echo "hit enter to proceed"
+      read
+      clear
+}
+
+options=
+
+until [ "$options" = "0" ]; do
+
+read -p "enter something to get is identified: " chara
+
+case $chara in
+[[:lower:]] | [[:upper:]] ) clear;echo "letters $chara";;
+
+[0-9] ) clear;echo "numbers: $chara";;
+
+"exit" ) exit;;
+
+* ) clear;echo "cannot be mixed of both or more than one";
+    echo "";hit_enter;;
+
+esac
+done
+}
+
+case_exa2(){
+
+hit_enter(){
+      echo "hit enter to proceed"
+      read
+      clear
+}
+numbers=
+
+until [ "$numbers" = "0" ]; do
+
+echo "
+PROGRAM MENU
+
+1 - disp free dsk spc
+2 - disp free mem
+
+0 - ext prog
+"
+echo -n "Enter opt: "
+read opt
+echo ""
+case $opt in
+
+1 ) df;;
+2 ) free;;
+0 ) exit;;
+* ) echo "pls enter a vlid opt";hit_enter;;
+esac
+done
+}
+
+
+
+read -p "what example do you want to try first choose 1, 2, or 3? > " want
+
+case $want in
+
+1 ) case_exa1;;
+
+2 ) case_exa2;;
+
+* ) echo "placeholderr";;
+
+esac
