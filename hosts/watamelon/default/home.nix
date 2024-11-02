@@ -185,8 +185,8 @@ in
       '';
       shellAliases = {
         sv = "sudo nvim";
-        fr = "nh os switch --hostname ${host} /home/${username}/zaneyos-backup";
-        fu = "nh os switch --hostname ${host} --update /home/${username}/zaneyos-backup";
+        fr = "nh os switch --hostname ${host} /home/${username}/zaneyos";
+        fu = "nh os switch --hostname ${host} --update /home/${username}/zaneyos";
         zu = "sh <(curl -L https://gitlab.com/Zaney/zaneyos/-/raw/main/install-zaneyos.sh)";
         ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
         v = "nvim";

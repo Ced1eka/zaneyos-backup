@@ -71,7 +71,7 @@ with lib;
             touchpad {
               natural_scroll = false
             }
-            sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
+            sensitivity = 0.5 # -1.0 - 1.0, 0 means no modification.
             accel_profile = flat
           }
           windowrule = noborder,^(wofi)$

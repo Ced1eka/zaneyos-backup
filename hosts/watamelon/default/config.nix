@@ -6,9 +6,7 @@
   options,
   ...
 }:
-let
-fallbackimage = ../../config/wallpapers/wallhaven-qzl99q.jpg;
-in
+
 {
   imports = [
     ./hardware.nix
@@ -54,7 +52,7 @@ in
   # Styling Options
   stylix = {
     enable = true;
-    image = fallbackimage;
+    image = ../../config/wallpapers/beautifulmountainscape.jpg;
     # base16Scheme = {
     #   base00 = "232136";
     #   base01 = "2a273f";
@@ -118,7 +116,7 @@ in
   networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
 
   # Set your time zone.
-  time.timeZone = "Asia/Tokyo";
+  time.timeZone = "America/Chicago";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -221,9 +219,6 @@ in
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
     };
- 
-    gamemode.enable = true;
-
     thunar = {
       enable = true;
       plugins = with pkgs.xfce; [
@@ -297,44 +292,6 @@ in
     spotify
     neovide
     greetd.tuigreet
-
-    vscode
-    cava
-    obsidian
-    vlc
-    nodejs
-    nodePackages.webpack
-    nodePackages.webpack-cli
-    librewolf
-    fira-code-nerdfont
-    keepassxc
-    libreoffice
-    bottles
-    obs-studio
-    lact
-    
-    gpu-screen-recorder # CLI
-    gpu-screen-recorder-gtk # GUI
-
-    mesa
-    protontricks
-    mangohud
-    goverlay
-    protonup-qt
-
-    lutris
-    steam
-    steam-run
-    
-
-    wine
-    wineWowPackages.unstableFull
-    wineWowPackages.unstable
-    wineWowPackages.waylandFull
-    winetricks
-
-    vkd3d
-    vkd3d-proton
   ];
 
   fonts = {
@@ -342,7 +299,7 @@ in
       noto-fonts-emoji
       noto-fonts-cjk
       font-awesome
-      
+      symbola
       material-icons
     ];
   };
@@ -350,12 +307,6 @@ in
   environment.variables = {
     ZANEYOS_VERSION = "2.2";
     ZANEYOS = "true";
-
-    VKD3D_DISABLE_EXTENSIONS="VK_NV_low_latency2";
-
-    VKD3D_CONFIG = "vk_debug";
-    VKD3D_DEBUG = "trace";
-    VKD3D_LOG_FILE = "home/watamelon/vkd3d-proton-debugLog.log";
   };
 
   # Extra Portal Configuration
@@ -408,7 +359,7 @@ in
     printing = {
       enable = true;
       drivers = [
-        # pkgs.hplipWithPlugin
+        # pkgs.hplipWithPlugin 
       ];
     };
     gnome.gnome-keyring.enable = true;
@@ -439,17 +390,6 @@ in
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     '';
   };
-
-  systemd.services.lact = {
-  description = "amdgpu Control Daemon";
-  after = ["multi-user.target"];
-  wantedBy = ["multi-user.target"];
-  serviceConfig = {
-  ExecStart = "${pkgs.lact}/bin/lact daemon";
-  };
-  enable = true;
-  };
-
   hardware.sane = {
     enable = true;
     extraBackends = [ pkgs.sane-airscan ];
@@ -525,9 +465,6 @@ in
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
-
-    extraPackages = [ pkgs.amdvlk ];
-    extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
   };
 
   # Open ports in the firewall.
