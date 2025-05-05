@@ -79,8 +79,10 @@ in
     cursor.name = "Bibata-Modern-Ice";
     cursor.size = 24;
     fonts = {
+
+      # Made changes here
       monospace = {
-        package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+        package = pkgs.nerd-fonts.jetbrains-mono;
         name = "JetBrainsMono Nerd Font Mono";
       };
       sansSerif = {
@@ -117,6 +119,29 @@ in
   networking.hostName = host;
   networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
 
+  #added this chunk of code for custom dns but idk if it works for bdo
+/*
+
+# Disable NetworkManager's internal DNS resolution
+networking.networkmanager.dns = "none";
+
+# These options are unnecessary when managing DNS ourselves
+networking.useDHCP = false;
+networking.dhcpcd.enable = false;
+
+# Configure DNS servers manually (this example uses Cloudflare and Google DNS)
+# IPv6 DNS servers can be used here as well.
+networking.nameservers = [
+  "1.1.1.1"
+  "1.0.0.1"
+  "8.8.8.8"
+  "8.8.4.4"
+];
+
+*/
+
+  #ends here
+  
   # Set your time zone.
   time.timeZone = "Asia/Tokyo";
 
@@ -215,7 +240,7 @@ in
       enableSSHSupport = true;
     };
     virt-manager.enable = true;
-    steam = {
+      steam = {
       enable = true;
       gamescopeSession.enable = true;
       remotePlay.openFirewall = true;
@@ -287,7 +312,7 @@ in
     swww
     grim
     slurp
-    gnome.file-roller
+    file-roller
     swaynotificationcenter
     imv
     mpv
@@ -340,7 +365,7 @@ in
   fonts = {
     packages = with pkgs; [
       noto-fonts-emoji
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       font-awesome
       
       material-icons
@@ -466,7 +491,7 @@ in
   services.blueman.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  #sound.enable = true;
   hardware.pulseaudio.enable = false;
 
   # Security / Polkit
@@ -521,15 +546,20 @@ in
   };
 
   # OpenGL
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    # driSupport = true;
+    # driSupport32Bit = true;
 
     extraPackages = [ pkgs.amdvlk ];
     extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
   };
 
+    /*fileSystems."/mnt/gamerDriveNix" = {
+    device = "/dev/sda5";
+    fsType = "ext4";
+    options = ["defaults" "noatime" "rw" "user"];
+  };*/
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

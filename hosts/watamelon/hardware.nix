@@ -21,7 +21,14 @@
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/7085-707A";
       fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
     };
+
+  fileSystems."/mnt/gamerDriveNix" = {
+    device = "/dev/sda5";
+    fsType = "ext4";
+    options = ["defaults" "noatime" "rw" "user"];
+  };
 
   swapDevices = [ ];
 

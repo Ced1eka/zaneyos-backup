@@ -71,7 +71,7 @@ with lib;
             touchpad {
               natural_scroll = false
             }
-            sensitivity = 1 # -1.0 - 1.0, 0 means no modification.
+            sensitivity = 0.9 # -1.0 - 1.0, 0 means no modification.
             accel_profile = flat
           }
           windowrule = noborder,^(wofi)$
@@ -84,9 +84,13 @@ with lib;
           windowrulev2 = stayfocused, title:^()$,class:^(steam)$
           windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
           windowrulev2 = opacity 0.9 0.7, class:^(Brave)$
-          windowrulev2 = opacity 0.9 0.7, class:^(thunar)$
+          windowrulev2 = float, opacity 0.9 0.7, class:^(thunar)$
           windowrulev2 = opacity 0.9 override 0.7 override 0.6 override, class:^(code-url-handler)$
           windowrulev2 = opacity 0.8 override 0.6 override 0.9 override, class:^(kitty)$
+          
+          windowrulev2 = float, opacity 0.9 0.7, initialTitle:^(Save File)$
+          windowrulev2 = float, opacity 0.9 0.7, initialTitle:^(redmaster.egan-jones.net wants to open)$
+          windowrulev2 = float, class:^(xdg-desktop-portal-gtk)$ 
 
           gestures {
             workspace_swipe = true
@@ -113,10 +117,10 @@ with lib;
           }
           decoration {
             rounding = 10
-            drop_shadow = true
-            shadow_range = 4
-            shadow_render_power = 3
-            col.shadow = rgba(1a1a1aee)
+            #drop_shadow = true
+            #shadow_range = 4
+            #shadow_render_power = 3
+           # col.shadow = rgba(1a1a1aee)
             blur {
                 enabled = true
                 size = 5
@@ -133,6 +137,9 @@ with lib;
             pseudotile = true
             preserve_split = true
           }
+
+          
+
           bind = ${modifier},Return,exec,${terminal}
           bind = ${modifier}SHIFT,Return,exec,rofi-launcher
           bind = ${modifier}SHIFT,W,exec,web-search

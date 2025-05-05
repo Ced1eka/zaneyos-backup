@@ -35,6 +35,7 @@ with lib;
           "custom/exit"
           "battery"
           "tray"
+          "gamemode"
           "clock"
         ];
 
@@ -90,6 +91,20 @@ with lib;
         "tray" = {
           spacing = 12;
         };
+
+        "gamemode" = {
+          format = "{glyph}";
+          format-alt = "{glyph} {count}";
+          glyph = "";
+          hide-not-running = true;
+          use-icon = true;
+          icon-name = "input-gaming-symbolic";
+          icon-spacing = 4;
+          icon-size = 20;
+          tooltip = true;
+          tooltip-format = "Games running: {count}";
+        };
+
         "pulseaudio" = {
           format = "{icon} {volume}% {format_source}";
           format-bluetooth = "{volume}% {icon} {format_source}";
@@ -254,7 +269,7 @@ with lib;
           border-radius: 0px 0px 40px 0px;
         }
         #custom-hyprbindings, #network, #battery,
-        #custom-notification, #tray, #custom-exit {
+        #custom-notification, #tray, #custom-exit , #gamemode, #gamemode.running{
           font-weight: bold;
           background: #${config.stylix.base16Scheme.base0F};
           color: #${config.stylix.base16Scheme.base00};

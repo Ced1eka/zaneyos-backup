@@ -6,12 +6,16 @@
 }:
 let
   inherit (import ./variables.nix) gitUsername gitEmail;
+
 in
 {
   # Home Manager Settings
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
   home.stateVersion = "23.11";
+  home.sessionPath = [
+    "$HOME/.local/opt/mudfish"
+  ];
 
   # Import Program Configurations
   imports = [
@@ -94,8 +98,8 @@ in
   };
   qt = {
     enable = true;
-    style.name = "adwaita-dark";
-    platformTheme.name = "gtk3";
+    style.name = "kvantum";
+    platformTheme.name = "qtct";
   };
 
 
@@ -199,7 +203,7 @@ in
     };
     home-manager.enable = true;
     hyprlock = {
-      enable = true;
+      enable = false;
       settings = {
         general = {
           disable_loading_bar = true;
@@ -209,7 +213,8 @@ in
         };
         background = [
           {
-            path = "/home/${username}/Pictures/Wallpapers/zaney-wallpaper.jpg";
+            path = "home/${username}/Pictures/Wallpapers/wallhaven-qzl99q.jpg";
+            #lib.mkDefault = true;            
             blur_passes = 3;
             blur_size = 8;
           }

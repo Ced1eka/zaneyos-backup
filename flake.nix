@@ -19,7 +19,7 @@
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }@inputs:
+    {nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
       host = "watamelon";
